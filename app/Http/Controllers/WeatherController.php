@@ -77,20 +77,26 @@ class WeatherController extends Controller
 
             Log::info("Synchronizing...");
 
-            if (isset($response) && is_array($response->soles)) {
-                foreach ($response->soles as $sol) {
-                    $weather = Weather::firstOrCreate(['sol' => $sol->sol]);
+            if (isset($response) && is_array($response->soles))
+            {
+                foreach ($response->soles as $sol)
+                {
 
-                    $weather->insight_id = $sol->id;
+                    if (!Weather::where('sol', '=',  $sol->sol)->exists())
+                    {
+                        $weather = Weather::firstOrCreate(['sol' => $sol->sol]);
+                        $weather->insight_id = $sol->id;
 
-                    foreach ($weather->getFillables() as $attributeKey) {
-                        if (isset($sol->{$attributeKey}))
-                            $weather->{$attributeKey} = $sol->{$attributeKey} != "--" ? $sol->{$attributeKey} : null;
+                        foreach ($weather->getFillables() as $attributeKey)
+                            if (isset($sol->{$attributeKey}))
+                                $weather->{$attributeKey} = $sol->{$attributeKey} != "--" ? $sol->{$attributeKey} : null;
+
+                        $weather->update();
                     }
-
-                    $weather->update();
                 }
-            } else {
+            }
+
+            else {
                 $this->respondNotFound("No records could be readed from the external source: " . json_encode($response));
             }
 
