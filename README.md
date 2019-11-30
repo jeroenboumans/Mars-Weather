@@ -4,6 +4,9 @@
 
 The Mars Weather API is an API collecting data from NASA's InSight api and redistributing it as a REST API.
 
+## Application URL
+[https://api.mars.spacexcompanion.app/](https://api.mars.spacexcompanion.app/)
+
 ## Documentation
 
 ### Example response

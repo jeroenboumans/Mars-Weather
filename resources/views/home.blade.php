@@ -14,9 +14,8 @@
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="container">
             <h1 class="display-4">Mars Weather API <?=$version?></h1>
-            <p class="lead">Build on NASA's <a href="https://mars.nasa.gov/insight/weather/">InSight API</a></p>
-
-            <code>wget http://mars.api/v1/weather</code>
+            <p class="lead">The Mars Weather API is an API collecting data from NASA's <a href="https://mars.nasa.gov/insight/weather/">InSight API</a> and redistributing it as a REST API.</p>
+            <a href="https://github.com/jeroenboumans/Mars-Weather/blob/master/README.md">Documentation</a>
         </div>
     </div>
 </body>
