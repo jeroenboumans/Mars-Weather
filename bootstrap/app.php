@@ -62,6 +62,7 @@ $app->singleton(
 
  $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
+     'throttle' => App\Http\Middleware\ThrottleRequests::class,
      'application' => App\Http\Middleware\ApplicationMiddleware::class
  ]);
 
@@ -77,7 +78,7 @@ $app->singleton(
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*

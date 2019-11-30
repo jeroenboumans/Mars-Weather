@@ -15,21 +15,21 @@ $router->get('/', function () use ($router) {
     return view('home', ['version' => env('VERSION')]);
 });
 
-$router->group(['prefix' => 'v1'], function() use ($router)
+$router->group(['prefix' => 'v1'], function () use ($router)
 {
-    $router->get('/', function () {
-        return "Loading version 1.0";
-    });
-
-    $router->group(['prefix' => 'weather'], function() use ($router)
+    $router->group(['prefix' => 'weather'], function () use ($router)
     {
-        $router->get('/', 'WeatherController@index');
-        $router->get('/first', 'WeatherController@first');
+        $router->get('/', [
+            'middleware' => 'throttle:30,1',
+            'user' =>'WeatherController@index'
+        ]);
 
+        $router->get('/first', 'WeatherController@first');
         $router->get('/latest', 'WeatherController@latest');
+
         $router->get('/sync/{accessKey}', [
-            'middleware'=> 'application',
-            'uses'=> 'WeatherController@sync'
+            'middleware' => 'application',
+            'uses' => 'WeatherController@sync'
         ]);
 
         $router->get('/sol/{id}', 'SolController@read');
@@ -38,8 +38,7 @@ $router->group(['prefix' => 'v1'], function() use ($router)
         $router->put('/', 'WeatherController@create');
     });
 
-    $router->group(['prefix' => 'sols'], function() use ($router)
-    {
+    $router->group(['prefix' => 'sols'], function () use ($router) {
         $router->get('{id}', 'SolController@read');
     });
 });
