@@ -31,7 +31,8 @@ class WeatherController extends Controller
             if($weather)
                 $this->respond($weather);
 
-            $this->respondNotFound();
+            else
+                $this->respondNotFound();
         }
         catch (\Exception $e) {
             $this->respondException($e);
@@ -101,7 +102,7 @@ class WeatherController extends Controller
 
             Log::info("Synchronizing done!");
 
-            $this->respond(Weather::all());
+            return $this->respond(Weather::all());
         }
         catch (\Exception $e){
             $this->respondException($e);
