@@ -1,5 +1,8 @@
 # Mars Weather API
+
 [![buddy pipeline](https://app.buddy.works/studionoorderlicht/mars-weather/pipelines/pipeline/226287/badge.svg?token=ff018493511180fdeb94a5b441fe39a51a4d5b2d1bc24c0f68f4c7099e7c4e5d "buddy pipeline")](https://app.buddy.works/studionoorderlicht/mars-weather/pipelines/pipeline/226287)
+
+![](https://mars-jpl-nasa-gov.s3.amazonaws.com/src/insight/insight_weather_bg.jpg)
 
 The Mars Weather API is an API collecting data from NASA's InSight api and redistributing it as a REST API.
 
@@ -41,7 +44,15 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
 Retrieve one week of weather data.
 ```
 https://api.mars.spacexcompanion.app/v1/weather
+https://api.mars.spacexcompanion.app/v1/weather?year=2018
+https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day
 ```
+| URL Param        | Info           | Values |
+| ------------- |:-------------:| -----:|
+| day           | Number of the day     | 1 - 31 |
+| month         | Number of the month   | 1 - 12 |
+| year          | Number of the year    | 2012 - current |
+| range         | Statistics range      | year, month (default), day |
 
 ### **GET** - /v1/weather/{id}
 Retrieve the weather by id
