@@ -69,13 +69,14 @@ class WeatherController extends Controller
         }
     }
 
-    public function sync()
+    public function sync($accessKey)
     {
-        $request    = (new Client())->get(env('WEATHER_FETCH_URL'));
-        $response   = json_decode($request->getBody()->getContents());
-
-        Log::info("Synchronizing...");
         try {
+            $request    = (new Client())->get(env('WEATHER_FETCH_URL'));
+            $response   = json_decode($request->getBody()->getContents());
+
+            Log::info("Synchronizing...");
+
             if (isset($response) && is_array($response->soles)) {
                 foreach ($response->soles as $sol) {
                     $weather = Weather::firstOrCreate(['sol' => $sol->sol]);

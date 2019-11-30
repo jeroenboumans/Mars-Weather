@@ -25,8 +25,13 @@ $router->group(['prefix' => 'v1'], function() use ($router)
     {
         $router->get('/', 'WeatherController@index');
         $router->get('/first', 'WeatherController@first');
+
         $router->get('/latest', 'WeatherController@latest');
-        $router->get('/sync', 'WeatherController@sync');
+        $router->get('/sync/{accessKey}', [
+            'middleware'=> 'application',
+            'uses'=> 'WeatherController@sync'
+        ]);
+
         $router->get('/sol/{id}', 'SolController@read');
         $router->get('{id}', 'WeatherController@read');
 
