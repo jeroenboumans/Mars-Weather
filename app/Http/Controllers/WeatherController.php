@@ -6,11 +6,12 @@ use App\Models\Weather;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class WeatherController extends Controller
 {
     public function index(Request $request){
-        return response()->json(Weather::all());
+        return response()->json(Weather::paginate(7));
     }
 
     public function create(Request $request)
@@ -73,6 +74,7 @@ class WeatherController extends Controller
         $request    = (new Client())->get(env('WEATHER_FETCH_URL'));
         $response   = json_decode($request->getBody()->getContents());
 
+        Log::info("Synchronizing...");
         try {
             if (isset($response) && is_array($response->soles)) {
                 foreach ($response->soles as $sol) {
@@ -90,6 +92,8 @@ class WeatherController extends Controller
             } else {
                 $this->respondNotFound("No records could be readed from the external source: " . json_encode($response));
             }
+
+            Log::info("Synchronizing done!");
 
             $this->respond(Weather::all());
         }
