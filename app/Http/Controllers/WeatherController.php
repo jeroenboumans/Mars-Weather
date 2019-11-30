@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\StatsFilter;
+use App\Classes\WeatherTransformer;
 use App\Models\Weather;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -9,15 +11,28 @@ use Illuminate\Support\Facades\Log;
 
 class WeatherController extends Controller
 {
-    public function index(Request $request){
-        return response()->json(Weather::paginate(7));
+    public function index(Request $request)
+    {
+        try {
+            $this->filter($request);
+        }
+        catch (\Exception $e) {
+            $this->respondException($e);
+        }
+    }
+
+    public function filter(Request $request)
+    {
+        $filter     = new StatsFilter($request);
+        $results    = Weather::whereBetween('terrestrial_date', $filter->getDateRange())->get();
+        $this->respond(WeatherTransformer::use()->transform($results));
     }
 
     public function create(Request $request)
     {
         try {
-            $weather = Weather::create($request);
-            $this->respond($weather);
+            $result = Weather::create($request);
+            $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {
              $this->respondException($e);
@@ -27,9 +42,10 @@ class WeatherController extends Controller
     public function read(Request $request, $id)
     {
         try {
-            $weather = Weather::find($id);
-            if($weather)
-                $this->respond($weather);
+            $result = Weather::find($id);
+
+            if($result)
+                $this->respond(WeatherTransformer::use()->transformSingle($result));
 
             $this->respondNotFound();
         }
@@ -41,7 +57,8 @@ class WeatherController extends Controller
     public function first()
     {
         try {
-            $this->respond(Weather::orderBy('terrestrial_date', 'asc')->first());
+            $result = Weather::orderBy('terrestrial_date', 'asc')->first();
+            $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {
             $this->respondException($e);
@@ -51,7 +68,8 @@ class WeatherController extends Controller
     public function latest()
     {
         try {
-            $this->respond( Weather::orderBy('terrestrial_date', 'desc')->first());
+            $result = Weather::orderBy('terrestrial_date', 'desc')->first();
+            $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {
             $this->respondException($e);
@@ -61,7 +79,8 @@ class WeatherController extends Controller
     public function sol($id)
     {
         try {
-            $this->respond( Weather::where('sol', $id)->first());
+            $result = Weather::where('sol', $id)->first();
+            $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {
             $this->respondException($e);
