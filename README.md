@@ -44,7 +44,15 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
 Retrieve one week of weather data.
 ```
 https://api.mars.spacexcompanion.app/v1/weather
+https://api.mars.spacexcompanion.app/v1/weather?year=2018
+https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day
 ```
+| URL Param        | Info           | Values |
+| ------------- |:-------------:| -----:|
+| day           | Number of the day     | 1 - 31 |
+| month         | Number of the month   | 1 - 12 |
+| year          | Number of the year    | 2012 - current |
+| range         | Statistics range      | year, month (default), day |
 
 ### **GET** - /v1/weather/{id}
 Retrieve the weather by id
