@@ -31,8 +31,7 @@ class WeatherController extends Controller
             if($weather)
                 $this->respond($weather);
 
-            else
-                $this->respondNotFound();
+            $this->respondNotFound();
         }
         catch (\Exception $e) {
             $this->respondException($e);

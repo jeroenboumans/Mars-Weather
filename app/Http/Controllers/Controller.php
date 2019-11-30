@@ -7,7 +7,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     function respond($body, $code = 200){
-        return response()->json($body)->send();
+        response()->json($body)->send();
         die();
     }
 

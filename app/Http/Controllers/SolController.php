@@ -15,8 +15,8 @@ class SolController extends Controller
 
             if($sol)
                 $this->respond($sol);
-            else
-                $this->respondNotFound();
+
+            $this->respondNotFound();
         }
         catch (\Exception $e) {
             $this->respondException($e);
