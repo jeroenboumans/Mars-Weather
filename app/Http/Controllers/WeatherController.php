@@ -87,7 +87,7 @@ class WeatherController extends Controller
                             $weather->{$attributeKey} = $sol->{$attributeKey} != "--" ? $sol->{$attributeKey} : null;
                     }
 
-                    $weather->save();
+                    $weather->update();
                 }
             } else {
                 $this->respondNotFound("No records could be readed from the external source: " . json_encode($response));
