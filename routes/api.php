@@ -19,17 +19,17 @@ $router->group(['prefix' => 'v1'], function () use ($router)
 {
     $router->group(['prefix' => 'weather'], function () use ($router)
     {
-        $router->get('/', [
-            'middleware' => 'throttle:30,1',
-            'user' =>'WeatherController@index'
-        ]);
-
         $router->get('/first', 'WeatherController@first');
         $router->get('/latest', 'WeatherController@latest');
 
         $router->get('/sync/{accessKey}', [
             'middleware' => 'application',
             'uses' => 'WeatherController@sync'
+        ]);
+
+        $router->get('/', [
+            'middleware' => 'throttle:30,1',
+            'uses' =>'WeatherController@index'
         ]);
 
         $router->get('/sol/{id}', 'SolController@read');
