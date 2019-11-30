@@ -1,24 +1,99 @@
-# Lumen PHP Framework
+# Mars Weather API
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
 [![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
 [![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
 [![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+The Mars Weather API is an API collecting data from NASA's InSight api and redistributing it as a REST API.
 
-## Official Documentation
+## Documentation
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+### **GET** - /v1/weather/
+Retrieve one week of weather data.
+```
+https://api.mars.spacexcompanion.app/v1/weather
+```
+
+### **GET** - /v1/weather/{id}
+Retrieve the weather by id
+```
+https://api.mars.spacexcompanion.app/v1/weather/1000
+```
+
+### **GET** - /v1/weather/first
+Retrieve the first known weather on Mars
+```
+https://api.mars.spacexcompanion.app/v1/weather/first
+```
+
+### **GET** - /v1/weather/latest
+Retrieve the latest known weather on Mars
+```
+https://api.mars.spacexcompanion.app/v1/weather/latest
+```
+
+### **GET** - /v1/weather/sync/{applicationKey}
+Syncs all known weather records from the source database. The application-middleware will validate this.
+```
+https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey
+```
+
+### **GET** - /v1/sols/{nr}
+Retrieve of sol {id} on Mars
+```
+https://api.mars.spacexcompanion.app/v1/sols/2593
+```
+
+
+### **PUT** - /v1/weather
+Add a single weather result to the database
+```
+curl -X PUT "https://api.mars.spacexcompanion.app/v1/weather" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json; charset=utf-8" \
+    --data-raw "$body"
+```
+
+
+#### Body Parameters
+
+- **body** should respect the following schema:
+
+```json
+{
+    "insight_id": "2457",
+    "terrestrial_date": "2019-11-25",
+    "sol": "2594",
+    "ls": "110",
+    "season": "Month 4",
+    "min_temp":"-79",
+    "max_temp":"-22",
+    "pressure":"772",
+    "pressure_string":"Higher",
+    "abs_humidity":"--",
+    "wind_speed":"--",
+    "wind_direction":"--",
+    "atmo_opacity":"Sunny",
+    "sunrise":"05:47",
+    "sunset":"17:30",
+    "local_uv_irradiance_index":"Moderate",
+    "min_gts_temp":"-82",
+    "max_gts_temp":"-8"
+}
+```
 
 ## Contributing
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+If you have any questions or tips, feel free to [contact](https://www.studionoorderlicht.nl/contact/) me anytime!.
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Lumen, please send an [email](https://www.studionoorderlicht.nl/contact/) to Jeroen Boumans. All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
