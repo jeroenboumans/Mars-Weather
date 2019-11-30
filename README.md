@@ -69,25 +69,20 @@ https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey
 ```
 
 ### **GET** - /v1/sols/{nr}
-Retrieve of sol {id} on Mars
+Retrieve of sol {nr} on Mars
 ```
 https://api.mars.spacexcompanion.app/v1/sols/2593
 ```
 
 
 ### **PUT** - /v1/weather
-Add a single weather result to the database
+Add a single weather result to the database.
 ```
-curl -X PUT "https://api.mars.spacexcompanion.app/v1/weather" \
-    -H "Accept: application/json" \
-    -H "Content-Type: application/json; charset=utf-8" \
-    --data-raw "$body"
+https://api.mars.spacexcompanion.app/v1/weather
 ```
-
 
 #### Body Parameters
-
-- **body** should respect the following schema:
+**body** should respect the following schema:
 
 ```json
 {
@@ -125,4 +120,4 @@ If you discover a security vulnerability within Lumen, please send an [email](ht
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+of this license document, but changing it is not allowed.
