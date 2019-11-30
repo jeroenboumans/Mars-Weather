@@ -28,14 +28,14 @@
         </div>
     </div>
 
-    <div class="uk-section uk-section-secondary">
+    <div class="uk-section uk-section-default">
         <div class="uk-container uk-container-small">
             <h2>Endpoints</h2>
             <h3><span class="uk-label uk-label-success">GET</span> /weather</h3>
             <p>Retrieve weather data. Note: This endpoint is limited to 30 requests per minute.</p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather</code></p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather?year=2018" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather?year=2018</code></p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day</code></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather</pre></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather?year=2018" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather?year=2018</pre></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day</pre></p>
             <table class="uk-table uk-table-striped">
                 <thead>
                 <tr>
@@ -65,27 +65,27 @@
 
             <h3><span class="uk-label uk-label-success">GET</span> /weather/{id}</h3>
             <p>Retrieve the weather by id</p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/1000" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather/1000</code></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/1000" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather/1000</pre></p>
 
             <h3><span class="uk-label uk-label-success">GET</span> /weather/first</h3>
             <p>Retrieve the first known weather on Mars</p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/first" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather/first</code></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/first" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather/first</pre></p>
 
             <h3><span class="uk-label uk-label-success">GET</span> /weather/latest</h3>
             <p>Retrieve the latest known weather on Mars</p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/latest" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather/latest</code></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/latest" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather/latest</pre></p>
 
             <h3><span class="uk-label uk-label-success">GET</span> /weather/sync/{applicationKey}</h3>
             <p>Syncs all known weather records from the source database. The application-middleware will validate this.</p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey</code></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey</pre></p>
 
             <h3><span class="uk-label uk-label-success">GET</span> /weather/sols/{nr}</h3>
             <p>Retrieve of sol {nr} on Mars</p>
-            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/sols/2593" class="uk-button uk-button-primary uk-button-small">Run</a> <code>https://api.mars.spacexcompanion.app/v1/sols/2593</code></p>
+            <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/sols/2593" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/sols/2593</pre></p>
 
             <h3><span class="uk-label uk-label-warning">PUT</span> /weather</h3>
             <p>Add a single weather result to the database.</p>
-            <code>https://api.mars.spacexcompanion.app/v1/weather</code>
+            <pre>https://api.mars.spacexcompanion.app/v1/weather</pre>
             <p>Request body format:</p>
             <pre>{
         "insight_id": "2457",
@@ -106,7 +106,7 @@
         "local_uv_irradiance_index":"Moderate",
         "min_gts_temp":"-82",
         "max_gts_temp":"-8"
-    }</pre></p>
+    }</pre>
         </div>
     </div>
 
