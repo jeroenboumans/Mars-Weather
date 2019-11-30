@@ -19,11 +19,12 @@ class ApplicationMiddleware
             return $next($request);
 
         else
-            return
-                response()->json([
-                    "error" => true,
-                    "message" => 'Unauthorized.',
-                    "code" => 401
-                ])->setStatusCode(401)->send();
+            response()->json([
+                "error" => true,
+                "message" => 'Unauthorized.',
+                "code" => 401
+            ])->setStatusCode(401)->send();
+
+        die;
     }
 }
