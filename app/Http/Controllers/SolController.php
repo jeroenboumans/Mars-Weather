@@ -12,7 +12,7 @@ class SolController extends Controller
     {
         try {
 
-            $sol = $this->respond(Weather::where('sol', $id)->first());
+            $sol = Weather::where('sol', $id)->first();
 
             if($sol)
                 $this->respond($sol);
