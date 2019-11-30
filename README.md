@@ -1,6 +1,5 @@
 # Mars Weather API
-
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
+[![buddy pipeline](https://app.buddy.works/studionoorderlicht/mars-weather/pipelines/pipeline/226287/badge.svg?token=ff018493511180fdeb94a5b441fe39a51a4d5b2d1bc24c0f68f4c7099e7c4e5d "buddy pipeline")](https://app.buddy.works/studionoorderlicht/mars-weather/pipelines/pipeline/226287)
 
 The Mars Weather API is an API collecting data from NASA's InSight api and redistributing it as a REST API.
 
