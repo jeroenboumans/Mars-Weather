@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Weather;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SolController extends Controller
 {
