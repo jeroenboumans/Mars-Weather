@@ -9,6 +9,35 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
 
 ## Documentation
 
+### Example response
+
+```json
+{
+    id: 1000,
+    insight_id: 1460,
+    terrestrial_date: "2016-12-05 00:00:00",
+    sol: 1540,
+    ls: 274,
+    season: "Month 10",
+    min_temp: -72,
+    max_temp: -3,
+    min_gts_temp: -76,
+    max_gts_temp: 13,
+    pressure: 896,
+    pressure_string: "Higher",
+    abs_humidity: null,
+    wind_speed: null,
+    wind_direction: null,
+    atmo_opacity: "Sunny",
+    sunrise: "06:08",
+    sunset: "18:26",
+    local_uv_irradiance_index: "High",
+    created_at: "2019-11-30 15:29:39",
+    updated_at: "2019-11-30 15:29:39",
+    deleted_at: null
+}
+```
+
 ### **GET** - /v1/weather/
 Retrieve one week of weather data.
 ```
