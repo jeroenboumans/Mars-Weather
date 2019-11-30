@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Weather extends Model
 {
@@ -47,4 +48,24 @@ class Weather extends Model
     protected $hidden = [
 //        'password',
     ];
+
+    public static function create($attributes)
+    {
+        try {
+            $weather = new Weather();
+
+            foreach ($weather->getFillables() as $attributeKey) {
+                $weather->{$attributeKey} = $attributes->{$attributeKey};
+            }
+
+            $weather->save();
+
+            return $weather;
+        }
+
+        catch(\Exception $e){
+            Log::info($e->getMessage());
+            return false;
+        }
+    }
 }

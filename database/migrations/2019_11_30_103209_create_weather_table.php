@@ -16,18 +16,18 @@ class CreateWeatherTable extends Migration
         Schema::create('weathers', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->integer('insight_id')->default(0);
+            $table->integer('insight_id')->default(0)->nullable();
 
-            $table->string("terrestrial_date")->nullable();
-            $table->integer("sol")->default(0);
-            $table->integer("ls")->default(0);
+            $table->dateTime("terrestrial_date")->nullable();
+            $table->integer("sol")->default(0)->nullable();
+            $table->integer("ls")->default(0)->nullable();
             $table->string("season")->nullable();
 
-            $table->float("min_temp")->default(0);
-            $table->float("max_temp")->default(0);
-            $table->float( "min_gts_temp")->default(0);
-            $table->float("max_gts_temp")->default(0);
-            $table->float("pressure")->default(0);
+            $table->integer("min_temp")->default(0)->nullable();
+            $table->integer("max_temp")->default(0)->nullable();
+            $table->integer( "min_gts_temp")->default(0)->nullable();
+            $table->integer("max_gts_temp")->default(0)->nullable();
+            $table->integer("pressure")->default(0)->nullable();
 
             $table->string("pressure_string")->nullable();
             $table->string("abs_humidity")->nullable();
