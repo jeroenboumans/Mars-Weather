@@ -8,7 +8,7 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
 
 ### Example response
 
-```json
+```
 {
     "id": 1000,
     "insight_id": 1460,
