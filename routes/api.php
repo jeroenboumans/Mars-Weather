@@ -21,12 +21,6 @@ $router->group(['prefix' => 'v1'], function () use ($router)
     {
         $router->get('/first', 'WeatherController@first');
         $router->get('/latest', 'WeatherController@latest');
-
-        $router->get('/sync/{accessKey}', [
-            'middleware' => 'application',
-            'uses' => 'WeatherController@sync'
-        ]);
-
         $router->get('/', [
             'middleware' => 'throttle:30,1',
             'uses' =>'WeatherController@index'

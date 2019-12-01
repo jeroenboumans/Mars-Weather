@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Classes\StatsFilter;
 use App\Classes\WeatherTransformer;
 use App\Models\Weather;
+use App\SyncTrait;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class WeatherController extends Controller
 {
+    use SyncTrait;
+
     public function index(Request $request)
     {
         try {
@@ -83,46 +86,6 @@ class WeatherController extends Controller
             $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {
-            $this->respondException($e);
-        }
-    }
-
-    public function sync($accessKey)
-    {
-        try {
-            $request    = (new Client())->get(env('WEATHER_FETCH_URL'));
-            $response   = json_decode($request->getBody()->getContents());
-
-            Log::info("Synchronizing...");
-
-            if (isset($response) && is_array($response->soles))
-            {
-                foreach ($response->soles as $sol)
-                {
-
-                    if (!Weather::where('sol', '=',  $sol->sol)->exists())
-                    {
-                        $weather = Weather::firstOrCreate(['sol' => $sol->sol]);
-                        $weather->insight_id = $sol->id;
-
-                        foreach ($weather->getFillables() as $attributeKey)
-                            if (isset($sol->{$attributeKey}))
-                                $weather->{$attributeKey} = $sol->{$attributeKey} != "--" ? $sol->{$attributeKey} : null;
-
-                        $weather->update();
-                    }
-                }
-            }
-
-            else {
-                $this->respondNotFound("No records could be readed from the external source: " . json_encode($response));
-            }
-
-            Log::info("Synchronizing done!");
-
-            return $this->respond("Sync completed");
-        }
-        catch (\Exception $e){
             $this->respondException($e);
         }
     }
