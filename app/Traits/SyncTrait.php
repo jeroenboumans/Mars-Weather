@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 trait SyncTrait
 {
     function syncWithRemote(){
-        $request    = (new Client())->get(env('LEGACY_FETCH_URL'));
+        $request    = (new Client())->get(env('JSON_FETCH_URL'));
         $response   = json_decode($request->getBody()->getContents());
 
         Log::info("Synchronizing...");

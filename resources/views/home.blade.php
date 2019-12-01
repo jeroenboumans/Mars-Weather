@@ -83,30 +83,6 @@
             <p>Retrieve of sol {nr} on Mars</p>
             <p><a target="_blank" href="https://api.mars.spacexcompanion.app/v1/sols/2593" class="uk-button uk-button-primary uk-button-small">Run</a> <pre>https://api.mars.spacexcompanion.app/v1/sols/2593</pre></p>
 
-            <h3><span class="uk-label uk-label-warning">PUT</span> /weather</h3>
-            <p>Add a single weather result to the database.</p>
-            <pre>https://api.mars.spacexcompanion.app/v1/weather</pre>
-            <p>Request body format:</p>
-            <pre>{
-        "insight_id": "2457",
-        "terrestrial_date": "2019-11-25",
-        "sol": "2594",
-        "ls": "110",
-        "season": "Month 4",
-        "min_temp":"-79",
-        "max_temp":"-22",
-        "pressure":"772",
-        "pressure_string":"Higher",
-        "abs_humidity":"--",
-        "wind_speed":"--",
-        "wind_direction":"--",
-        "atmo_opacity":"Sunny",
-        "sunrise":"05:47",
-        "sunset":"17:30",
-        "local_uv_irradiance_index":"Moderate",
-        "min_gts_temp":"-82",
-        "max_gts_temp":"-8"
-    }</pre>
         </div>
     </div>
 
