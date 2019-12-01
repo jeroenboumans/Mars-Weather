@@ -120,7 +120,7 @@ class WeatherController extends Controller
 
             Log::info("Synchronizing done!");
 
-            return $this->respond(Weather::all());
+            return $this->respond("Sync completed");
         }
         catch (\Exception $e){
             $this->respondException($e);
