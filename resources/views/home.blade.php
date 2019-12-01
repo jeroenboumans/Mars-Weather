@@ -25,6 +25,10 @@
         <div class="uk-container uk-container-small">
             <h1 class="display-4">Mars Weather API <?=$version?></h1>
             <p class="lead">The Mars Weather API is an API collecting data from NASA's <a href="https://mars.nasa.gov/insight/weather/">InSight API</a> and redistributing it as a REST API.</p>
+
+            <h3>Build with Laravel</h3>
+            <p><strong>Mars Weather API</strong> is build on Laravel's <a href="https://lumen.laravel.com/" target="_blank">Lumen</a> platform to provide quick and fast request response.</p>
+            <button class="uk-button uk-button-default"><span class="uk-margin-small-right uk-icon" uk-icon="icon: github"></span> Source code </button>
         </div>
     </div>
 
