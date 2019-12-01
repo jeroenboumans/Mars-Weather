@@ -18,11 +18,11 @@
     <title>Mars Weather API <?=$version?></title>
 </head>
 <body>
-
-
     <div class="uk-section uk-section-secondary">
 
         <div class="uk-container uk-container-small">
+            <h6 class="uk-heading-line uk-text-center"><span>SpaceX Companion - API</span></h6>
+
             <h1 class="display-4">Mars Weather API <?=$version?></h1>
             <p class="lead">The Mars Weather API is an API collecting data from NASA's <a href="https://mars.nasa.gov/insight/weather/">InSight API</a> and redistributing it as a REST API.</p>
 
@@ -85,6 +85,11 @@
 
         </div>
     </div>
+    <div class="uk-section uk-section-muted">
 
+        <div class="uk-container uk-container-small">
+            <h6 class="uk-heading-line uk-text-center"><span>Studio Noorderlicht &copy;<?=date('Y')?></span></h6>
+        </div>
+    </div>
 </body>
 </html>
