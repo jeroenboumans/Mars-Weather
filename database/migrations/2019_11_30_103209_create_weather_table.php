@@ -15,9 +15,9 @@ class CreateWeatherTable extends Migration
     {
         Schema::create('weathers', function (Blueprint $table) {
 
-            $table->bigIncrements('id');
-            $table->string("season")->nullable();
+            $table->increments('id');
             $table->integer("sol")->default(0)->nullable();
+            $table->enum("season", ["winter", "spring", "summer", "fall"])->default("winter");
 
             // AT - Air temperature
             $table->float("temperature_average")->nullable();

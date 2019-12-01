@@ -13,12 +13,15 @@ class CreateWindDirectionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('directions');
         Schema::create('directions', function (Blueprint $table)
         {
-            $table->bigIncrements('id');
-            $table->integer('weather_id')->nullable();
-
-            $table->string("point")->nullable();
+            $table->increments('id');
+            $table->unsignedInteger('weather_id')->unsigned()->nullable();
+            $table->foreign('weather_id')
+                ->references('id')
+                ->on('weathers');
+            $table->enum("point", ["n","nne","ne","ene","e","ese","se","sse","s","ssw","sw","wsw","w","wnw","nw","nnw"])->nullable("n");
             $table->float("degrees")->nullable()->default(0);
             $table->float("right")->nullable()->default(0);
             $table->float("up")->nullable()->default(0);
