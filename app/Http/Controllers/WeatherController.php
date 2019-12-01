@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Classes\StatsFilter;
 use App\Classes\WeatherTransformer;
 use App\Models\Weather;
-use App\SyncTrait;
-use GuzzleHttp\Client;
+use App\Traits\SyncTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class WeatherController extends Controller
 {
@@ -27,7 +25,7 @@ class WeatherController extends Controller
     public function filter(Request $request)
     {
         $filter     = new StatsFilter($request);
-        $results    = Weather::whereBetween('terrestrial_date', $filter->getDateRange())->get();
+        $results    = $filter->getRangedResults(Weather::class, 'measurement_last');
         $this->respond(WeatherTransformer::use()->transform($results));
     }
 
@@ -60,7 +58,7 @@ class WeatherController extends Controller
     public function first()
     {
         try {
-            $result = Weather::orderBy('terrestrial_date', 'asc')->first();
+            $result = Weather::orderBy('sol', 'asc')->first();
             $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {
@@ -71,7 +69,7 @@ class WeatherController extends Controller
     public function latest()
     {
         try {
-            $result = Weather::orderBy('terrestrial_date', 'desc')->first();
+            $result = Weather::orderBy('sol', 'desc')->first();
             $this->respond(WeatherTransformer::use()->transformSingle($result));
         }
         catch (\Exception $e) {

@@ -15,29 +15,34 @@ class Weather extends Model
      * @var array
      */
     protected $fillable = [
-        "insight_id",
-        "terrestrial_date",
-        "sol",
-        "ls",
+        "id",
         "season",
-        "min_temp",
-        "max_temp",
-        "pressure",
-        "pressure_string",
-        "abs_humidity",
-        "wind_speed",
-        "wind_direction",
-        "atmo_opacity",
-        "sunrise",
-        "sunset",
-        "local_uv_irradiance_index",
-        "min_gts_temp",
-        "max_gts_temp"
+        "sol",
+
+        "temperature_average",
+        "temperature_min",
+        "temperature_max",
+
+        "pressure_average",
+        "pressure_min",
+        "pressure_max",
+
+        "wind_speed_average",
+        "wind_speed_min",
+        "wind_speed_max",
+
+        "measurement_first",
+        "measurement_last",
     ];
 
     public function getFillables()
     {
         return $this->fillable;
+    }
+
+    public function directions()
+    {
+        return $this->hasMany(Direction::class);
     }
 
     /**

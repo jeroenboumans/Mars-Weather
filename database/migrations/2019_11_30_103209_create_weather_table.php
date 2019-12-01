@@ -14,29 +14,27 @@ class CreateWeatherTable extends Migration
     public function up()
     {
         Schema::create('weathers', function (Blueprint $table) {
+
             $table->bigIncrements('id');
-
-            $table->integer('insight_id')->default(0)->nullable();
-
-            $table->dateTime("terrestrial_date")->nullable();
-            $table->integer("sol")->default(0)->nullable();
-            $table->integer("ls")->default(0)->nullable();
             $table->string("season")->nullable();
+            $table->integer("sol")->default(0)->nullable();
 
-            $table->integer("min_temp")->default(0)->nullable();
-            $table->integer("max_temp")->default(0)->nullable();
-            $table->integer( "min_gts_temp")->default(0)->nullable();
-            $table->integer("max_gts_temp")->default(0)->nullable();
-            $table->integer("pressure")->default(0)->nullable();
+            // AT - Air temperature
+            $table->float("temperature_average")->nullable();
+            $table->float("temperature_min")->nullable();
+            $table->float("temperature_max")->nullable();
+            // PRE - Air Pressure
+            $table->float("pressure_average")->nullable();
+            $table->float("pressure_min")->nullable();
+            $table->float("pressure_max")->nullable();
 
-            $table->string("pressure_string")->nullable();
-            $table->string("abs_humidity")->nullable();
-            $table->string("wind_speed")->nullable();
-            $table->string("wind_direction")->nullable();
-            $table->string("atmo_opacity")->nullable();
-            $table->string("sunrise")->nullable();
-            $table->string("sunset")->nullable();
-            $table->string("local_uv_irradiance_index")->nullable();
+            // HWS - Wind Speed
+            $table->float("wind_speed_average")->nullable();
+            $table->float("wind_speed_min")->nullable();
+            $table->float("wind_speed_max")->nullable();
+
+            $table->dateTime("measurement_first")->nullable();
+            $table->dateTime("measurement_last")->nullable();
 
             $table->timestamps();
             $table->softDeletes();

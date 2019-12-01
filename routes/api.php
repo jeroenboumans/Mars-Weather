@@ -19,6 +19,8 @@ $router->group(['prefix' => 'v1'], function () use ($router)
 {
     $router->group(['prefix' => 'weather'], function () use ($router)
     {
+        $router->get('/sync', 'WeatherController@sync');
+
         $router->get('/first', 'WeatherController@first');
         $router->get('/latest', 'WeatherController@latest');
         $router->get('/', [

@@ -15,28 +15,40 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
 
 ```
 {
-    "id": 1000,
-    "insight_id": 1460,
-    "terrestrial_date": "2016-12-05 00:00:00",
-    "sol": 1540,
-    "ls": 274,
-    "season": "Month 10",
-    "min_temp": -72,
-    "max_temp": -3,
-    "min_gts_temp": -76,
-    "max_gts_temp": 13,
-    "pressure": 896,
-    "pressure_string": "Higher",
-    "abs_humidity": null,
-    "wind_speed": null,
-    "wind_direction": null,
-    "atmo_opacity": "Sunny",
-    "sunrise": "06:08",
-    "sunset": "18:26",
-    "local_uv_irradiance_index": "High",
-    "created_at": "2019-11-30 15:29:39",
-    "updated_at": "2019-11-30 15:29:39",
-    "deleted_at": null
+  "sol": 359,
+  "season": "spring",
+  "measurement": {
+    "first": "2019-11-30 00:00:00",
+    "last": "2019-11-30 00:00:00"
+  },
+  "air": {
+    "temperature": {
+      "average": -63.06,
+      "minimum": -99.32,
+      "maximum": -21.75
+    },
+    "pressure": {
+      "average": 668.79,
+      "minimum": 652.77,
+      "maximum": 681.96
+    }
+  },
+  "wind": {
+    "speed": {
+      "average": 5.8,
+      "minimum": 0.21,
+      "maximum": 23.26
+    },
+    "directions": [
+      {
+        "point": "N",
+        "degrees": 0,
+        "up": 1,
+        "right": 0
+      },
+      ...
+    ]
+  }
 }
 ```
 
@@ -45,20 +57,20 @@ Retrieve one week of weather data.
 Note: This endpoint is limited to 30 requests per minute.
 ```
 https://api.mars.spacexcompanion.app/v1/weather
-https://api.mars.spacexcompanion.app/v1/weather?year=2018
+https://api.mars.spacexcompanion.app/v1/weather?year=2019
 https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day
 ```
 | URL Param        | Info           | Values |
 | ------------- |:-------------:| -----:|
 | day           | Number of the day     | 1 - 31 |
 | month         | Number of the month   | 1 - 12 |
-| year          | Number of the year    | 2012 - current |
-| range         | Statistics range      | year, month (default), day |
+| year          | Number of the year    | 2019 - current |
+| range         | Statistics range      | year, month, week (default), day |
 
 ### **GET** - /v1/weather/{id}
 Retrieve the weather by id
 ```
-https://api.mars.spacexcompanion.app/v1/weather/1000
+https://api.mars.spacexcompanion.app/v1/weather/3
 ```
 
 ### **GET** - /v1/weather/first
@@ -82,7 +94,7 @@ https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey
 ### **GET** - /v1/sols/{nr}
 Retrieve of sol {nr} on Mars
 ```
-https://api.mars.spacexcompanion.app/v1/sols/2593
+https://api.mars.spacexcompanion.app/v1/sols/355
 ```
 
 
@@ -90,32 +102,6 @@ https://api.mars.spacexcompanion.app/v1/sols/2593
 Add a single weather result to the database.
 ```
 https://api.mars.spacexcompanion.app/v1/weather
-```
-
-#### Body Parameters
-**body** should respect the following schema:
-
-```json
-{
-    "insight_id": "2457",
-    "terrestrial_date": "2019-11-25",
-    "sol": "2594",
-    "ls": "110",
-    "season": "Month 4",
-    "min_temp":"-79",
-    "max_temp":"-22",
-    "pressure":"772",
-    "pressure_string":"Higher",
-    "abs_humidity":"--",
-    "wind_speed":"--",
-    "wind_direction":"--",
-    "atmo_opacity":"Sunny",
-    "sunrise":"05:47",
-    "sunset":"17:30",
-    "local_uv_irradiance_index":"Moderate",
-    "min_gts_temp":"-82",
-    "max_gts_temp":"-8"
-}
 ```
 
 ## Contributing

@@ -25,7 +25,7 @@ class StatsFilter
 
     public function getRequestRange()
     {
-        return $this->request->get('range') ?: 'month';
+        return $this->request->get('range') ?: 'week';
     }
 
     public function getDateRange()
@@ -34,5 +34,9 @@ class StatsFilter
         $endDate    = $this->getRequestDate("-1 " . $this->getRequestRange());
 
         return [$endDate, $startDate];
+    }
+
+    public function getRangedResults($modelType, $column){
+        return $modelType::whereBetween($column, $this->getDateRange())->get();
     }
 }
