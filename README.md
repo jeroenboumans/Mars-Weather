@@ -9,9 +9,7 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
 ## Application URL
 [https://api.mars.spacexcompanion.app/](https://api.mars.spacexcompanion.app/)
 
-## Documentation
-
-### Example response
+## Example response
 
 ```
 {
@@ -50,58 +48,6 @@ The Mars Weather API is an API collecting data from NASA's InSight api and redis
     ]
   }
 }
-```
-
-### **GET** - /v1/weather/
-Retrieve one week of weather data.
-Note: This endpoint is limited to 30 requests per minute.
-```
-https://api.mars.spacexcompanion.app/v1/weather
-https://api.mars.spacexcompanion.app/v1/weather?year=2019
-https://api.mars.spacexcompanion.app/v1/weather?month=3&year=2017&day=25&range=day
-```
-| URL Param        | Info           | Values |
-| ------------- |:-------------:| -----:|
-| day           | Number of the day     | 1 - 31 |
-| month         | Number of the month   | 1 - 12 |
-| year          | Number of the year    | 2019 - current |
-| range         | Statistics range      | year, month, week (default), day |
-
-### **GET** - /v1/weather/{id}
-Retrieve the weather by id
-```
-https://api.mars.spacexcompanion.app/v1/weather/3
-```
-
-### **GET** - /v1/weather/first
-Retrieve the first known weather on Mars
-```
-https://api.mars.spacexcompanion.app/v1/weather/first
-```
-
-### **GET** - /v1/weather/latest
-Retrieve the latest known weather on Mars
-```
-https://api.mars.spacexcompanion.app/v1/weather/latest
-```
-
-### **GET** - /v1/weather/sync/{applicationKey}
-Syncs all known weather records from the source database. The application-middleware will validate this.
-```
-https://api.mars.spacexcompanion.app/v1/weather/sync/ThisShouldBeARandomKey
-```
-
-### **GET** - /v1/sols/{nr}
-Retrieve of sol {nr} on Mars
-```
-https://api.mars.spacexcompanion.app/v1/sols/355
-```
-
-
-### **PUT** - /v1/weather
-Add a single weather result to the database.
-```
-https://api.mars.spacexcompanion.app/v1/weather
 ```
 
 ## Contributing
