@@ -39,14 +39,18 @@ trait SyncTrait
     function readDirections($directions) : array {
         $relations = [];
 
-        foreach ($directions as $direction)
-        {
-            $relations[] = Direction::create([
-                'point' => $direction->compass_point,
-                'right' => $direction->compass_right,
-                'up' => $direction->compass_up,
-                'degrees' => $direction->compass_degrees
-            ]);
+        try {
+            foreach ($directions as $direction) {
+                $relations[] = Direction::create([
+                    'point' => $this->read($direction->compass_point),
+                    'right' => $this->read($direction->compass_right),
+                    'up' => $this->read($direction->compass_up),
+                    'degrees' => $this->read($direction->compass_degrees)
+                ]);
+            }
+        }
+        catch (\Exception $e){
+            Log::info("Reading mars weather directions during sync failed: " . $e->getMessage());
         }
 
         return $relations;
