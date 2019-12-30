@@ -56,22 +56,32 @@ trait SyncTrait
     {
         $weather = Weather::firstOrCreate(['sol' => $sol]);
 
-        $weather->fill([
-            'season' => $r->Season,
-            'temperature_average' => $r->AT->av,
-            'temperature_min' => $r->AT->mn,
-            'temperature_max' => $r->AT->mx,
-            'pressure_average' => $r->PRE->av,
-            'pressure_min' => $r->PRE->mn,
-            'pressure_max' => $r->PRE->mx,
-            'wind_speed_average' => $r->HWS->av,
-            'wind_speed_min' => $r->HWS->mn,
-            'wind_speed_max' => $r->HWS->mx,
-            'measurement_first' => $this->convertDate($r->First_UTC),
-            'measurement_last' => $this->convertDate($r->Last_UTC)
-        ]);
+        try {
+            $weather->fill([
+                'season' => $r->Season,
+                'temperature_average' => $this->read($r->AT->av),
+                'temperature_min' => $this->read($r->AT->mn),
+                'temperature_max' => $this->read($r->AT->mx),
+                'pressure_average' => $this->read($r->PRE->av),
+                'pressure_min' => $this->read($r->PRE->mn),
+                'pressure_max' => $this->read($r->PRE->mx),
+                'wind_speed_average' => $this->read($r->HWS->av),
+                'wind_speed_min' => $this->read($r->HWS->mn),
+                'wind_speed_max' => $this->read($r->HWS->mx),
+                'measurement_first' => $this->convertDate($this->read($r->First_UTC)),
+                'measurement_last' => $this->convertDate($this->read($r->Last_UTC))
+            ]);
+        }
+        catch (\Exception $e){
+            Log::info("Mars weather sync failed: " . $e->getMessage());
+        }
+
         $weather->update();
         return $weather;
+    }
+
+    private function read($propertyValue){
+        return isset($propertyValue) ? $propertyValue : null;
     }
 
     private function convertDate($str)
